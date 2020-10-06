@@ -1,7 +1,6 @@
-import { h, api } from './h';
+import { h, api } from './h/h';
 import type { Subject } from './s';
 import type { JSXInternal } from './jsx';
-export { h, api };
 declare namespace h {
     export namespace JSX {
         type MaybeSubject<T> = T | Subject<T>;
@@ -51,3 +50,4 @@ declare namespace h {
             = PatchIntrinsicElements<JSXInternal.IntrinsicElements>;
     }
 }
+export { h, api };
