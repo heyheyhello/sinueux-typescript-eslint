@@ -1,26 +1,14 @@
 // Vanilla JSX
 
-import {Subject} from "./s/index.js"
+// This includes definitions for standard HTML and SVG elements. There is some
+// assembly required into a new namespace that refers here. For a minimal
+// working vanilla namespace see sinueux/h/index.d.ts. To extend elements and
+// attributes with an observer implementation see sinueux/index.d.ts
 
-// This includes only definitions for standard HTML and SVG elements. If you're
-// extending `h()` with an observer / observable implementation you'll likely
-// want them supported in JSX elements and attributes.
+// Interfaces in this file have had "X extends Y" relations removed to make it
+// easier to assemble
 
 export namespace JSXInternal {
-  type Element = HTMLElement
-
-  interface ElementAttributesProperty {
-    props: unknown;
-  }
-
-  interface ElementChildrenAttribute {
-    children: unknown;
-  }
-
-  interface PathAttributes {
-    d: string;
-  }
-
   type TargetedEvent<
     Target extends EventTarget = EventTarget,
     TypedEvent extends Event = Event
@@ -28,102 +16,63 @@ export namespace JSXInternal {
     readonly currentTarget: Target;
   };
 
-  type TargetedAnimationEvent<Target extends EventTarget> = TargetedEvent<
-    Target,
-    AnimationEvent
-  >;
-  type TargetedClipboardEvent<Target extends EventTarget> = TargetedEvent<
-    Target,
-    ClipboardEvent
-  >;
-  type TargetedCompositionEvent<Target extends EventTarget> = TargetedEvent<
-    Target,
-    CompositionEvent
-  >;
-  type TargetedDragEvent<Target extends EventTarget> = TargetedEvent<
-    Target,
-    DragEvent
-  >;
-  type TargetedFocusEvent<Target extends EventTarget> = TargetedEvent<
-    Target,
-    FocusEvent
-  >;
-  type TargetedKeyboardEvent<Target extends EventTarget> = TargetedEvent<
-    Target,
-    KeyboardEvent
-  >;
-  type TargetedMouseEvent<Target extends EventTarget> = TargetedEvent<
-    Target,
-    MouseEvent
-  >;
-  type TargetedPointerEvent<Target extends EventTarget> = TargetedEvent<
-    Target,
-    PointerEvent
-  >;
-  type TargetedTouchEvent<Target extends EventTarget> = TargetedEvent<
-    Target,
-    TouchEvent
-  >;
-  type TargetedTransitionEvent<Target extends EventTarget> = TargetedEvent<
-    Target,
-    TransitionEvent
-  >;
-  type TargetedUIEvent<Target extends EventTarget> = TargetedEvent<
-    Target,
-    UIEvent
-  >;
-  type TargetedWheelEvent<Target extends EventTarget> = TargetedEvent<
-    Target,
-    WheelEvent
-  >;
+  type TargetedAnimationEvent<Target extends EventTarget>
+    = TargetedEvent<Target, AnimationEvent>;
+  type TargetedClipboardEvent<Target extends EventTarget>
+    = TargetedEvent<Target, ClipboardEvent>;
+  type TargetedCompositionEvent<Target extends EventTarget>
+    = TargetedEvent<Target, CompositionEvent>;
+  type TargetedDragEvent<Target extends EventTarget>
+    = TargetedEvent<Target, DragEvent>;
+  type TargetedFocusEvent<Target extends EventTarget>
+    = TargetedEvent<Target, FocusEvent>;
+  type TargetedKeyboardEvent<Target extends EventTarget>
+    = TargetedEvent<Target, KeyboardEvent>;
+  type TargetedMouseEvent<Target extends EventTarget>
+    = TargetedEvent<Target, MouseEvent>;
+  type TargetedPointerEvent<Target extends EventTarget>
+    = TargetedEvent<Target, PointerEvent>;
+  type TargetedTouchEvent<Target extends EventTarget>
+    = TargetedEvent<Target, TouchEvent>;
+  type TargetedTransitionEvent<Target extends EventTarget>
+    = TargetedEvent<Target, TransitionEvent>;
+  type TargetedUIEvent<Target extends EventTarget>
+    = TargetedEvent<Target, UIEvent>;
+  type TargetedWheelEvent<Target extends EventTarget>
+    = TargetedEvent<Target, WheelEvent>;
 
   interface EventHandler<E extends TargetedEvent> {
     (event: E): void;
   }
 
-  type AnimationEventHandler<Target extends EventTarget> = EventHandler<
-    TargetedAnimationEvent<Target>
-  >;
-  type ClipboardEventHandler<Target extends EventTarget> = EventHandler<
-    TargetedClipboardEvent<Target>
-  >;
-  type CompositionEventHandler<Target extends EventTarget> = EventHandler<
-    TargetedCompositionEvent<Target>
-  >;
-  type DragEventHandler<Target extends EventTarget> = EventHandler<
-    TargetedDragEvent<Target>
-  >;
-  type FocusEventHandler<Target extends EventTarget> = EventHandler<
-    TargetedFocusEvent<Target>
-  >;
-  type GenericEventHandler<Target extends EventTarget> = EventHandler<
-    TargetedEvent<Target>
-  >;
-  type KeyboardEventHandler<Target extends EventTarget> = EventHandler<
-    TargetedKeyboardEvent<Target>
-  >;
-  type MouseEventHandler<Target extends EventTarget> = EventHandler<
-    TargetedMouseEvent<Target>
-  >;
-  type PointerEventHandler<Target extends EventTarget> = EventHandler<
-    TargetedPointerEvent<Target>
-  >;
-  type TouchEventHandler<Target extends EventTarget> = EventHandler<
-    TargetedTouchEvent<Target>
-  >;
-  type TransitionEventHandler<Target extends EventTarget> = EventHandler<
-    TargetedTransitionEvent<Target>
-  >;
-  type UIEventHandler<Target extends EventTarget> = EventHandler<
-    TargetedUIEvent<Target>
-  >;
-  type WheelEventHandler<Target extends EventTarget> = EventHandler<
-    TargetedWheelEvent<Target>
-  >;
+  type AnimationEventHandler<Target extends EventTarget>
+    = EventHandler<TargetedAnimationEvent<Target>>;
+  type ClipboardEventHandler<Target extends EventTarget>
+    = EventHandler<TargetedClipboardEvent<Target>>;
+  type CompositionEventHandler<Target extends EventTarget>
+    = EventHandler<TargetedCompositionEvent<Target>>;
+  type DragEventHandler<Target extends EventTarget>
+    = EventHandler<TargetedDragEvent<Target>>;
+  type FocusEventHandler<Target extends EventTarget>
+    = EventHandler<TargetedFocusEvent<Target>>;
+  type GenericEventHandler<Target extends EventTarget>
+    = EventHandler<TargetedEvent<Target>>;
+  type KeyboardEventHandler<Target extends EventTarget>
+    = EventHandler<TargetedKeyboardEvent<Target>>;
+  type MouseEventHandler<Target extends EventTarget>
+    = EventHandler<TargetedMouseEvent<Target>>;
+  type PointerEventHandler<Target extends EventTarget>
+    = EventHandler<TargetedPointerEvent<Target>>;
+  type TouchEventHandler<Target extends EventTarget>
+    = EventHandler<TargetedTouchEvent<Target>>;
+  type TransitionEventHandler<Target extends EventTarget>
+    = EventHandler<TargetedTransitionEvent<Target>>;
+  type UIEventHandler<Target extends EventTarget>
+    = EventHandler<TargetedUIEvent<Target>>;
+  type WheelEventHandler<Target extends EventTarget>
+    = EventHandler<TargetedWheelEvent<Target>>;
 
   interface DOMAttributes<Target extends EventTarget> {
-    children?: unknown;
-
     // Image Events
     onLoad?: GenericEventHandler<Target>;
     onLoadCapture?: GenericEventHandler<Target>;
@@ -316,8 +265,8 @@ export namespace JSXInternal {
     onTransitionEndCapture?: TransitionEventHandler<Target>;
   }
 
-  interface HTMLAttributes<RefType extends EventTarget = EventTarget>
-    extends DOMAttributes<RefType> {
+  // TODO: You'll need to extend DOMAttributes<Target>
+  interface HTMLAttributes<Target extends EventTarget = EventTarget> {
     // Standard HTML Attributes
     accept?: string;
     acceptCharset?: string;
@@ -470,8 +419,8 @@ export namespace JSXInternal {
     itemRef?: string;
   }
 
-  interface SVGAttributes<Target extends EventTarget = SVGElement>
-    extends HTMLAttributes<Target> {
+  // TODO: You'll need to extend HTMLAttributes<Target>
+  interface SVGAttributes<Target extends EventTarget = SVGElement> {
     accentHeight?: number | string;
     accumulate?: 'none' | 'sum';
     additive?: 'replace' | 'sum';
@@ -726,6 +675,7 @@ export namespace JSXInternal {
     zoomAndPan?: string;
   }
 
+  // TODO: You'll have to infer the element and reassembly with attributes
   interface IntrinsicElements {
     // HTML
     a: HTMLAttributes<HTMLAnchorElement>;
