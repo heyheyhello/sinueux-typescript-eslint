@@ -1,6 +1,6 @@
-import type { JSXInternal } from '../jsx';
-// @ts-expect-error
-declare namespace _h { export import JSX = JSXInternal; }
+// import type { JSXInternal } from '../jsx';
+// // @ts-expect-error
+// declare namespace _h { export import JSX = JSXInternal; }
 declare function _h(tag?: string | [], props?: unknown, ...children: unknown[]): Element | Node | DocumentFragment | undefined;
 type Frag = { _startMark: Text }
 declare const api: {

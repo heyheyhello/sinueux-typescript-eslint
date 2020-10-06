@@ -10,10 +10,10 @@ export { h, api };
 // see sinueux/h/index.d.ts for that). You'll see it work in index.tsx but there
 // will be an error about <input value={text}.../>
 
-declare namespace h {
-    // @ts-expect-error `import type`
-    export import JSX = JSXInternal
-}
+// declare namespace h {
+//     // @ts-expect-error `import type`
+//     export import JSX = JSXInternal
+// }
 
 
 // Test #2: Overwriting h namespace to use the jsx-sinueux.d.ts typings (which
@@ -29,32 +29,32 @@ declare namespace h {
 // new namespace that references the jsx.d.ts namespace. This way jsx.d.ts can
 // remain library agnostic and allow developers to apply edits outside of it
 
-// declare namespace h {
-//     export namespace JSX {
-//         type MaybeSubject<T> = T | Subject<T>
-//         type AllowSubject<Props> = { [K in keyof Props]: MaybeSubject<Props[K]> }
+declare namespace h {
+    export namespace JSX {
+        type MaybeSubject<T> = T | Subject<T>
+        type AllowSubject<Props> = { [K in keyof Props]: MaybeSubject<Props[K]> }
 
-//         // Prevent children on components that don't declare them
-//         interface IntrinsicAttributes { children?: never }
+        // Prevent children on components that don't declare them
+        interface IntrinsicAttributes { children?: never }
 
-//         // Allow children on all DOM elements (not components, see above)
-//         // ESLint will error for children on void elements like <img/>
-//         type DOMAttributes<Target extends EventTarget>
-//             = AllowSubject<
-//                 JSXInternal.DOMAttributes<Target>
-//                 & { children?: unknown }>
+        // Allow children on all DOM elements (not components, see above)
+        // ESLint will error for children on void elements like <img/>
+        type DOMAttributes<Target extends EventTarget>
+            = AllowSubject<
+                JSXInternal.DOMAttributes<Target>
+                & { children?: unknown }>
 
-//         type HTMLAttributes<RefType extends EventTarget = EventTarget>
-//             = AllowSubject<Omit<JSXInternal.HTMLAttributes<RefType>, 'style'>>
-//               & { style?:
-//                     | MaybeSubject<string>
-//                     | { [key: string]: MaybeSubject<string | number> }
-//                 }
+        type HTMLAttributes<RefType extends EventTarget = EventTarget>
+            = AllowSubject<Omit<JSXInternal.HTMLAttributes<RefType>, 'style'>>
+              & { style?:
+                    | MaybeSubject<string>
+                    | { [key: string]: MaybeSubject<string | number> }
+                }
 
-//         type SVGAttributes<Target extends EventTarget = SVGElement>
-//             = AllowSubject<JSXInternal.SVGAttributes<Target>>
+        type SVGAttributes<Target extends EventTarget = SVGElement>
+            = AllowSubject<JSXInternal.SVGAttributes<Target>>
 
-//         type IntrinsicElements
-//             = AllowSubject<JSXInternal.IntrinsicElements>
-//     }
-// }
+        type IntrinsicElements
+            = AllowSubject<JSXInternal.IntrinsicElements>
+    }
+}
