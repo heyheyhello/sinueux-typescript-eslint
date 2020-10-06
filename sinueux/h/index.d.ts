@@ -1,5 +1,5 @@
 import type { JSXInternal } from '../jsx';
-declare namespace _h {
+declare namespace h {
     export namespace JSX {
         type Element = HTMLElement;
 
@@ -41,11 +41,11 @@ declare namespace _h {
             = PatchIntrinsicElements<JSXInternal.IntrinsicElements>;
     }
 }
-declare function _h(tag?: string | [], props?: unknown, ...children: unknown[]): Element | Node | DocumentFragment | undefined;
+declare function h(tag?: string | [], props?: unknown, ...children: unknown[]): Element | Node | DocumentFragment | undefined;
 type Frag = { _startMark: Text }
 declare const api: {
     ns: string;
-    h: typeof _h;
+    h: typeof h;
     svg: <T extends () => Element>(closure: T) => ReturnType<T>;
     add: (parent: Node, value: unknown, endMark?: Node) => Node | Frag;
     insert: (el: Node, value: unknown, endMark?: Node, current?: Node | Frag, startNode?: ChildNode | null) => Node | Frag | undefined;
@@ -53,5 +53,4 @@ declare const api: {
     remove: (parent: Node, startNode: ChildNode | null, endMark: Node) => void;
     subscribe: (_: () => void) => void;
 };
-declare const h: typeof _h;
 export { h, api };
